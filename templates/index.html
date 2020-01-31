@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Links made simpler</h1>
+
+    <div class="form">
+        <form action="/" method="POST">
+            <input type="text" name="old_link" id="old_link">
+            <input type="text" name="new_link" id="new_link">
+            <input type="submit" value="Generate Link">
+        </form>
+    </div>
+
+    <div class="links">
+        {% for link in links %}
+            <div class="box">
+                <div class="number">ID: {{ link.id }}</div>
+                <div class="linkto">target: {{ link.old_link }}</a></div>
+                <div class="linkfrom">generated link: {{ link.new_link }}</div>
+                <div class="actions">
+                    <a href="/delete/{{ link.id }}">Del</a>
+                    <a href="/update/{{ link.id }}">Update</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <script src="{{ url_for('static', filename='index.js') }}"></script>
+</body>
+</html>
